@@ -36,17 +36,27 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var App = /** @class */ (function () {
     function App() {
+        var _this = this;
         this.cityInput = document.querySelector('.cityInput');
         this.btnAdd = document.querySelector('.btnAdd');
-        this.btnAdd.addEventListener('click', this.getInput);
+        this.weatherWrapper = document.querySelector('.weatherWrapper');
+        this.btnAdd.addEventListener('click', function () { _this.getInput(); });
         this.apiKey = '4c97ef52cb86a6fa1cff027ac4a37671';
     }
     App.prototype.getInput = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var weather;
+            var city;
             return __generator(this, function (_a) {
-                weather = this.getData(this.cityInput.value);
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0:
+                        console.log('input działa');
+                        city = this.cityInput.value;
+                        return [4 /*yield*/, this.getData(city)];
+                    case 1:
+                        _a.sent();
+                        this.saveData(city);
+                        return [2 /*return*/];
+                }
             });
         });
     };
@@ -64,11 +74,19 @@ var App = /** @class */ (function () {
                         return [4 /*yield*/, resposnse.json()];
                     case 2:
                         weatherData = _a.sent();
-                        console.log(resposnse);
+                        this.displayWeather(weatherData);
                         return [2 /*return*/];
                 }
             });
         });
+    };
+    App.prototype.displayWeather = function (weatherData) {
+        console.log('name', weatherData.name);
+    };
+    App.prototype.saveData = function (city) {
+        console.log('save działa', city);
+        localStorage.setItem('city', city);
+        console.log(localStorage);
     };
     return App;
 }());

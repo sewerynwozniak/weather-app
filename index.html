@@ -5,13 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>weather app</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     
-    <h1>Weather App</h1>
+    <h1 class="h1">Weather App</h1>
 
-    <input class="cityInput" type="text">
-    <button class="btnAdd">Dodaj</button>
+    <div class="UIWrapper">
+        <p class="pInput">Podaj miasto:</p>
+        <input class="cityInput" type="text">
+        <button class="btnAdd">Dodaj</button>
+    </div>
+
+    <div class="weatherWrapper">
+
+        <div class="singleWeatherWrapper">
+            <h3 class="city">Warszawa</h3>
+            <p class="data">Clear</p>
+
+            <div class="innerSingleWrapper">
+                <div class="wrapperLeft">
+                    <h6 class="temp">19 C</h6>
+                </div>
+                <div class="wrapperRight">
+                    <div class="wrapperUpper">
+                        <p class="data">Ciśnienie</p>
+                        <p class="data">1015 hPA</p>
+                    </div>
+                    <div class="wrapperLower">
+                        <p class="data">Wilgotność</p>
+                        <p class="data">34%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 
     <script src="index.js"></script>
