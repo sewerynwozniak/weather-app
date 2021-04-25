@@ -42,6 +42,7 @@ var App = /** @class */ (function () {
         this.weatherWrapper = document.querySelector('.weatherWrapper');
         this.btnAdd.addEventListener('click', function () { _this.getInput(); });
         this.apiKey = '4c97ef52cb86a6fa1cff027ac4a37671';
+        this.loadCityFromLocalStore();
     }
     App.prototype.getInput = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -49,7 +50,6 @@ var App = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        console.log('input działa');
                         city = this.cityInput.value;
                         return [4 /*yield*/, this.getData(city)];
                     case 1:
@@ -66,8 +66,7 @@ var App = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        console.log(city);
-                        apiCall = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + this.apiKey;
+                        apiCall = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + this.apiKey;
                         return [4 /*yield*/, fetch(apiCall)];
                     case 1:
                         resposnse = _a.sent();
@@ -80,13 +79,24 @@ var App = /** @class */ (function () {
             });
         });
     };
-    App.prototype.displayWeather = function (weatherData) {
-        console.log('name', weatherData.name);
-    };
     App.prototype.saveData = function (city) {
-        console.log('save działa', city);
-        localStorage.setItem('city', city);
-        console.log(localStorage);
+        var cityId = localStorage.length;
+        localStorage.setItem("city" + cityId, city);
+    };
+    App.prototype.loadCityFromLocalStore = function () {
+        for (var i = 0; i < localStorage.length; i++) {
+            var key = "city" + i;
+            this.getData(localStorage[key]);
+        }
+    };
+    App.prototype.displayWeather = function (weatherData) {
+        var city = weatherData.name;
+        var weather = weatherData.weather[0]['main'];
+        var temp = Math.round(weatherData.main['temp']);
+        var pressure = weatherData.main['pressure'];
+        var humidity = weatherData.main['humidity'];
+        var weatherTemplate = "\n        <div class=\"singleWeatherWrapper\">\n        <h3 class=\"city\">" + city + "</h3>\n        <span class=\"data\">" + weather + "</span>\n        <div class=\"innerSingleWrapper\">\n            <div class=\"wrapperLeft\">\n                <h6 class=\"temp\">" + temp + "\u00B0C</h6>\n            </div>\n            <div class=\"wrapperRight\">\n                <div class=\"wrapperUpper\">\n                    <span class=\"data\">Ci\u015Bnienie</span>\n                    <span class=\"data\">" + pressure + "</span>\n                </div>\n                <div class=\"wrapperLower\">\n                    <span class=\"data\">Wilgotno\u015B\u0107</span>\n                    <span class=\"data\">" + humidity + "</span>\n                </div>\n            </div>\n        </div>\n        </div>\n        ";
+        this.weatherWrapper.innerHTML += weatherTemplate;
     };
     return App;
 }());

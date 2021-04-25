@@ -10,9 +10,14 @@
     align-items: center;
 }
 
+html{
+    min-height: 100%;
+}
 
 body{
-    background-image: linear-gradient(rgb(35, 114, 167), rgb(35, 114, 167));
+    
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgb(96, 154, 192), rgb(35, 114, 167));
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -47,6 +52,9 @@ body{
     color: #fff;
 }
 
+span{
+    display: block;
+}
 
 .weatherWrapper{
     @include flex-center;
@@ -54,6 +62,7 @@ body{
 
 
 .singleWeatherWrapper{
+    margin: 10px;
     width: 250px;
     padding-bottom: 10px;
     background-color: transparent;

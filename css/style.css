@@ -3,9 +3,14 @@
   padding: 0;
 }
 
+html {
+  min-height: 100%;
+}
+
 body {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#2372a7), to(#2372a7));
-  background-image: linear-gradient(#2372a7, #2372a7);
+  background-repeat: no-repeat;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#609ac0), to(#2372a7));
+  background-image: linear-gradient(#609ac0, #2372a7);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -48,6 +53,10 @@ body {
   color: #fff;
 }
 
+span {
+  display: block;
+}
+
 .weatherWrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -61,6 +70,7 @@ body {
 }
 
 .singleWeatherWrapper {
+  margin: 10px;
   width: 250px;
   padding-bottom: 10px;
   background-color: transparent;
